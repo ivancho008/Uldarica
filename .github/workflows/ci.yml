@@ -1,3 +1,4 @@
+name: CI
 
 on:
   push:
@@ -10,24 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Descargar código
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2. Configurar Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
+      # 3. Instalar dependencias
       - name: Install dependencies
         run: npm install
 
+      # 4. Verificar que compila (build)
       - name: Build project
         run: npm run build --if-present
 
+      # 5. Correr pruebas unitarias (si las tienes)
       - name: Run tests
         run: npm test --if-present
 
+      # 6. Validar con ESLint (usando npx para evitar problemas de permisos)
       - name: Run ESLint
-        run: npm run lint --if-present
-
+        run: npx eslint . --ext .js,.jsx --max-warnings=0
 
