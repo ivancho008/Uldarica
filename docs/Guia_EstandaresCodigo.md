@@ -43,3 +43,21 @@ function calcularPromedio(notas) {
   const suma = notas.reduce((a, b) => a + b, 0);
   return Math.round(suma / notas.length);
 }
+
+## Flujo de Ramas
+
+Para el proyecto se definió el siguiente flujo de ramas:
+
+- **main**  
+  Contiene el código estable y listo para producción.  
+  Solo se hacen merges desde `develop` cuando una versión está lista.  
+
+- **develop**  
+  Rama de integración. Aquí se combinan las nuevas funcionalidades terminadas en `feature/*`.  
+
+- **feature/**  
+  Cada nueva funcionalidad se desarrolla en su propia rama, creada a partir de `develop`.  
+  Ejemplos:  
+  - `feature/login`  
+  - `feature/dashboard`  
+  - `feature/chat-colaborativo`
